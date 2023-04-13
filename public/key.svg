@@ -1,0 +1,22 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="20" height="20" fill="#F5F5F5"/>
+<g filter="url(#filter0_b_270_4756)">
+<rect x="-285" y="-265" width="1035" height="593" rx="20" fill="#FEFEFE" fill-opacity="0.5"/>
+<rect x="-283.5" y="-263.5" width="1032" height="590" rx="18.5" stroke="url(#paint0_linear_270_4756)" stroke-width="3"/>
+</g>
+<rect width="548" height="188" rx="8" transform="matrix(1 0 0 -1 -41 104)" fill="#E0EAFF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.334 0.750122H5.665C2.644 0.750122 0.75 2.88912 0.75 5.91612V14.0841C0.75 17.1111 2.635 19.2501 5.665 19.2501H14.333C17.364 19.2501 19.25 17.1111 19.25 14.0841V5.91612C19.25 2.88912 17.364 0.750122 14.334 0.750122Z" stroke="#4A56E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.83686 8.89813C6.22808 8.89813 5.73486 9.39135 5.73486 10.0001C5.73486 10.6089 6.22808 11.1021 6.83686 11.1021C7.44565 11.1021 7.93886 10.6089 7.93886 10.0001C7.93886 9.3918 7.44601 8.8989 6.83945 8.89813H6.83686ZM4.23486 10.0001C4.23486 8.56292 5.39965 7.39813 6.83686 7.39813H6.83986H6.8406C8.01523 7.39928 9.00747 8.17979 9.32913 9.25012H15.0098C15.424 9.25012 15.7598 9.58591 15.7598 10.0001V11.8521C15.7598 12.2663 15.424 12.6021 15.0098 12.6021C14.5955 12.6021 14.2598 12.2663 14.2598 11.8521V10.7501H12.9316V11.8522C12.9316 12.2665 12.5958 12.6022 12.1816 12.6022C11.7674 12.6022 11.4316 12.2665 11.4316 11.8522V10.7501H9.32918C9.00727 11.8216 8.01334 12.6021 6.83686 12.6021C5.39965 12.6021 4.23486 11.4373 4.23486 10.0001Z" fill="#4A56E2"/>
+<defs>
+<filter id="filter0_b_270_4756" x="-310" y="-290" width="1085" height="643" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="12.5"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_270_4756"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_270_4756" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_270_4756" x1="-126" y1="-279.463" x2="712.915" y2="243.998" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.4"/>
+<stop offset="1" stop-color="white" stop-opacity="0.13"/>
+</linearGradient>
+</defs>
+</svg>
