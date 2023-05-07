@@ -12,6 +12,7 @@ import { HomeSlider, Expenditures } from './Slider';
 import { AccountPage } from './Account';
 import { IncomeExpensePage } from './IncomeExpense';
 import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
+import { useTransactionsDataContext } from '@/components/store/context/transactionContext';
 
 const homePageIndex = 1;
 const accountPageIndex = 2;
@@ -43,6 +44,7 @@ export function PersonalFinanceLayout() {
   const [hideIncomeExpensePageItems, setHideIncomeExpensePageItems] = useState(false);
   const [refreshConnectionApiCalled, setRefreshConnectionApiCalled] = useState(false);
   const [incomeExpenseApiCalled, setIncomeExpenseApiCalled] = useState(false);
+  const transactionContext =useTransactionsDataContext()
 
   //Monthly sum of payments in categories
   const [expenseMonthlyData, setExpenseMonthlyData] = useState([]);
@@ -66,8 +68,18 @@ export function PersonalFinanceLayout() {
   const { refreshBasiqConnection, basiqConnection } = useAccountVerificationForm();
   const { completed } = basiqConnection;
 
-  let { dateGroupedTransactions } = useSelector(state => state.userTransactions);
 
+  // Orjinali
+  //let { dateGroupedTransactions } = useSelector(state => state.userTransactions);
+  // Benim yaptığım
+  let  dateGroupedTransactions = transactionContext.state.allTransactions.dateGroupedTransactions
+   useEffect(() => {
+    transactionContext.getAllTransactions()
+ 
+   }, [])
+    
+   
+  
   const userId = sessionStorage.getItem('userId');
 
   async function setIncomeExpenseData() {
