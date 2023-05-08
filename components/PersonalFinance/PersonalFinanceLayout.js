@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 import { Menu } from './Menu';
 import { HomeCharts } from './Chart/HomeCharts';
 import { IncomeExpenseCharts } from './Chart/IncomeExpenseCharts';
@@ -11,7 +12,6 @@ import { TransactionPage } from './Transaction';
 import { HomeSlider, Expenditures } from './Slider';
 import { AccountPage } from './Account';
 import { IncomeExpensePage } from './IncomeExpense';
-import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 
 const homePageIndex = 1;
 const accountPageIndex = 2;
@@ -184,7 +184,7 @@ export function PersonalFinanceLayout() {
         setIncomeLoading(false);
       });
 
-      setIncomeExpenseApiCalled(true);
+    setIncomeExpenseApiCalled(true);
   }
 
   useEffect(() => {
@@ -192,7 +192,7 @@ export function PersonalFinanceLayout() {
       await refreshBasiqConnection(userId);
 
       setRefreshConnectionApiCalled(true);
-    }
+    };
 
     if (dateGroupedTransactions?.length) {
       refreshConnectionFunc();
