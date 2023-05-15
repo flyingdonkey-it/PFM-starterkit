@@ -44,7 +44,7 @@ export function PersonalFinanceLayout() {
   const [hideIncomeExpensePageItems, setHideIncomeExpensePageItems] = useState(false);
   const [refreshConnectionApiCalled, setRefreshConnectionApiCalled] = useState(false);
   const [incomeExpenseApiCalled, setIncomeExpenseApiCalled] = useState(false);
-  const transactionContext =useTransactionsDataContext()
+  const transactionContext = useTransactionsDataContext();
 
   //Monthly sum of payments in categories
   const [expenseMonthlyData, setExpenseMonthlyData] = useState([]);
@@ -67,19 +67,11 @@ export function PersonalFinanceLayout() {
 
   const { refreshBasiqConnection, basiqConnection } = useAccountVerificationForm();
   const { completed } = basiqConnection;
+  let dateGroupedTransactions = transactionContext.state.dateGroupedTransactions;
+  useEffect(() => {
+    transactionContext.getAllTransactions();
+  }, []);
 
-
-  // Orjinali
-  //let { dateGroupedTransactions } = useSelector(state => state.userTransactions);
-  // Benim yaptığım
-  let  dateGroupedTransactions = transactionContext.state.allTransactions.dateGroupedTransactions
-   useEffect(() => {
-    transactionContext.getAllTransactions()
- 
-   }, [])
-    
-   
-  
   const userId = sessionStorage.getItem('userId');
 
   async function setIncomeExpenseData() {
@@ -142,7 +134,6 @@ export function PersonalFinanceLayout() {
         expenseChangeHistory.push(...paymentsChangeHistory);
 
         setExpensesByDate(prepareExpenseByDate(expenseChangeHistory));
-
         setExpenseLoading(false);
       })
       .catch(function (error) {
@@ -196,7 +187,7 @@ export function PersonalFinanceLayout() {
         setIncomeLoading(false);
       });
 
-      setIncomeExpenseApiCalled(true);
+    setIncomeExpenseApiCalled(true);
   }
 
   useEffect(() => {
@@ -204,7 +195,7 @@ export function PersonalFinanceLayout() {
       await refreshBasiqConnection(userId);
 
       setRefreshConnectionApiCalled(true);
-    }
+    };
 
     if (dateGroupedTransactions?.length) {
       refreshConnectionFunc();
@@ -353,6 +344,7 @@ export function PersonalFinanceLayout() {
                     expenseMonthly={expenseMonthlyData}
                     expenseLoading={expenseLoading}
                   />
+
                   <HomeCharts
                     expenseData={expenseData}
                     incomeData={incomeData}

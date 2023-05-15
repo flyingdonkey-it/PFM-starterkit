@@ -272,7 +272,6 @@ function useBasiqConnection({ currentStep, userId }) {
 
         // Check if all steps have been completed
         const completed = filteredSteps.every(step => step.status === 'success');
-
         setCompleted(completed);
         setInProgress(!completed);
         if (completed) setEstimatedProgress(100);
