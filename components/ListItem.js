@@ -1,6 +1,6 @@
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function ListItem({ item, imagePrefix }) {
+export const ListItem = ({ item, imagePrefix }) => {
   return (
     <div className="p-2 mb-2 sm:bg-[#F5F7F8] bg-list-item-color sm:p-4 rounded-[20px] sm:overflow-hidden">
       <div className="flex justify-between">
@@ -17,4 +17,4 @@ export function ListItem({ item, imagePrefix }) {
       </div>
     </div>
   );
-}
+};

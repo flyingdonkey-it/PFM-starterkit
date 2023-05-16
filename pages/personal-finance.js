@@ -1,7 +1,7 @@
 import { PersonalFinanceLayout } from '@/components/PersonalFinance';
 import { SEO } from '@/components/SEO';
 
-export default function PersonalFinance() {
+const PersonalFinance = () => {
   return (
     <>
       <SEO title="Personal Finance" />
@@ -10,4 +10,6 @@ export default function PersonalFinance() {
       </main>
     </>
   );
-}
+};
+
+export default PersonalFinance;

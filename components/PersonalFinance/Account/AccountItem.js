@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function AccountItem({ item, institutions, onAccountItemClick, showDetail, accountsType }) {
+export const AccountItem = ({ item, institutions, onAccountItemClick, showDetail, accountsType }) => {
   const [selectedAccount, setSelectedAccount] = useState([]);
 
   //Set related institution info
-  function setInstitution() {
+  const setInstitution = () => {
     setSelectedAccount(institutions.filter(x => x.id === item.institution));
-  }
+  };
 
   useEffect(() => {
     setInstitution();
@@ -45,4 +45,4 @@ export function AccountItem({ item, institutions, onAccountItemClick, showDetail
       )}
     </>
   );
-}
+};

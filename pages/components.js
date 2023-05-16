@@ -10,7 +10,7 @@ import { SEO } from '@/components/SEO';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 // This file is for developer use only, to get an overview of all the components
-export default function Components() {
+const Components = () => {
   return (
     <>
       <SEO title="Components" />
@@ -28,9 +28,9 @@ export default function Components() {
       </main>
     </>
   );
-}
+};
 
-function SectionButtons() {
+const SectionButtons = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">Button</h2>
@@ -79,9 +79,9 @@ function SectionButtons() {
       </div>
     </section>
   );
-}
+};
 
-function SectionLoadingSpinner() {
+const SectionLoadingSpinner = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">LoadingSpinner</h2>
@@ -90,9 +90,9 @@ function SectionLoadingSpinner() {
       </div>
     </section>
   );
-}
+};
 
-function SectionTextField() {
+const SectionTextField = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">TextField</h2>
@@ -101,9 +101,9 @@ function SectionTextField() {
       <TextField label="Label" error="Something went wrong" />
     </section>
   );
-}
+};
 
-function SectionPasswordField() {
+const SectionPasswordField = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">PasswordField</h2>
@@ -112,36 +112,36 @@ function SectionPasswordField() {
       <PasswordField label="Label" error="Something went wrong" />
     </section>
   );
-}
+};
 
-function SectionSearchInput() {
+const SectionSearchInput = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">SearchInput</h2>
       <SearchInput placeholder="Search" />
     </section>
   );
-}
+};
 
-function SectionErrorMessage() {
+const SectionErrorMessage = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">ErrorMessage</h2>
       <ErrorMessage message="Something went wrong." />
     </section>
   );
-}
+};
 
-function SectionProgressBar() {
+const SectionProgressBar = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">ProgressBar</h2>
       <ProgressBar value={75} />
     </section>
   );
-}
+};
 
-function SectionCircularProgressBar() {
+const SectionCircularProgressBar = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">CircularProgressBar</h2>
@@ -156,9 +156,9 @@ function SectionCircularProgressBar() {
       </div>
     </section>
   );
-}
+};
 
-function SectionToastNotification() {
+const SectionToastNotification = () => {
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">Toast</h2>
@@ -188,4 +188,6 @@ function SectionToastNotification() {
       </div>
     </section>
   );
-}
+};
+
+export default Components;

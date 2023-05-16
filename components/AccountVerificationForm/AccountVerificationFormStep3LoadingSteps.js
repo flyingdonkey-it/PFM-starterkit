@@ -8,7 +8,7 @@ import { fetchUserTransactions, userTransactionsLoading } from '@/store/actions/
 import { Button } from '@/components/Button';
 import { CircularProgressBar } from '@/components/CircularProgressBar';
 
-export function AccountVerificationFormStep3LoadingSteps() {
+export const AccountVerificationFormStep3LoadingSteps = () => {
   const [isResumeModalOpen, openResumeModal, closeResumeModal] = useTernaryState(false);
   const [progressBarValue, setProgressBarValue] = useState(0);
   const [progressInterval, setProgressInterval] = useState(null);
@@ -31,26 +31,26 @@ export function AccountVerificationFormStep3LoadingSteps() {
 
   const displayError = (error && errorOrNoData) || userTransactionsRequestError;
 
-  async function submit() {
+  const submit = async () => {
     if (!errorOrNoData) {
       finish();
     }
-  }
+  };
 
-  function updateProgressBarValue() {
+  const updateProgressBarValue = () => {
     let value = (progress + (userTransactionsRequestSuccessful ? 100 : 0)) / 2;
     if (isNaN(value)) value = 0;
     if (value > 100) value = 100;
     if (value === 100) setProgressBarValue(value);
-  }
+  };
 
   //this is to provide a more reactive interface for the users
-  function incrementProgressBarValueGradually() {
+  const incrementProgressBarValueGradually = () => {
     let interval = setInterval(() => {
       setProgressBarValue(currentValue => currentValue + Math.floor(Math.random() * 4));
     }, 250);
     setProgressInterval(interval);
-  }
+  };
 
   useEffect(() => {
     if (progressBarValue > 90) clearInterval(progressInterval);
@@ -116,8 +116,8 @@ export function AccountVerificationFormStep3LoadingSteps() {
       <AccountVerificationFormResumeInBackgroundModal isOpen={isResumeModalOpen} onClose={closeResumeModal} />
     </div>
   );
-}
-function useAccountsData({ userId }) {
+};
+const useAccountsData = ({ userId }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [error, setError] = useState();
@@ -155,7 +155,7 @@ function useAccountsData({ userId }) {
   }, [fetchAccounts]);
 
   return { data, loading, error, refetch };
-}
+};
 
 const STEP_NAME_MAP = {
   'verify-credentials': 'Verifying credentials...',

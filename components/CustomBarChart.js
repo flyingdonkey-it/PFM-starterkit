@@ -2,7 +2,7 @@ import { ComposedChart, Line, Bar, XAxis, Tooltip, ResponsiveContainer } from 'r
 import { formatCurrency } from '@/utils/formatCurrency';
 
 //Rewriting tooltip function to show custom text
-function CustomTooltip({ active, payload }) {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom-tooltip">
@@ -12,9 +12,9 @@ function CustomTooltip({ active, payload }) {
   }
 
   return null;
-}
+};
 
-export function CustomBarChart({ data, width, minWidth, minHeight }) {
+export const CustomBarChart = ({ data, width, minWidth, minHeight }) => {
   return (
     <ResponsiveContainer width={width} minWidth={minWidth} minHeight={minHeight}>
       <ComposedChart
@@ -33,4 +33,4 @@ export function CustomBarChart({ data, width, minWidth, minHeight }) {
       </ComposedChart>
     </ResponsiveContainer>
   );
-}
+};

@@ -1,4 +1,4 @@
-export function TextField({ id, label, type = 'text', error, ...props }) {
+export const TextField = ({ id, label, type = 'text', error, ...props }) => {
   return (
     <div className="relative ">
       <input
@@ -7,10 +7,13 @@ export function TextField({ id, label, type = 'text', error, ...props }) {
         id={id}
         {...props}
       />
-      <label htmlFor={id} className="absolute left-0 pt-2 pl-3 mb-0 text-xs text-gray-400 label leading-tighter text-primary-bold font-Inter">
+      <label
+        htmlFor={id}
+        className="absolute left-0 pt-2 pl-3 mb-0 text-xs text-gray-400 label leading-tighter text-primary-bold font-Inter"
+      >
         {label}
       </label>
       {error && <span className="block text-sm text-critical-bold-darker">{error}</span>}
     </div>
   );
-}
+};

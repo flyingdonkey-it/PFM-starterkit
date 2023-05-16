@@ -1,6 +1,6 @@
 import { Bar, BarChart, Cell, ResponsiveContainer, XAxis } from 'recharts';
 
-export function SingleBarChart({ data, width, height, left, right }) {
+export const SingleBarChart = ({ data, width, height, left, right }) => {
   const barColors = ['#24CCA7', '#D96C6C'];
 
   return (
@@ -49,4 +49,4 @@ export function SingleBarChart({ data, width, height, left, right }) {
       </BarChart>
     </ResponsiveContainer>
   );
-}
+};

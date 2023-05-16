@@ -1,4 +1,4 @@
-export function SearchInput({ labelScreenReader, ...props }) {
+export const SearchInput = ({ labelScreenReader, ...props }) => {
   return (
     <div className="relative">
       <label htmlFor="search" className="absolute left-0 top-auto flex items-center justify-center w-12 h-12">
@@ -31,4 +31,4 @@ export function SearchInput({ labelScreenReader, ...props }) {
       />
     </div>
   );
-}
+};

@@ -33,7 +33,7 @@ const colorPallette = [
   '#24CCA7',
 ];
 
-export function PersonalFinanceLayout() {
+export const PersonalFinanceLayout = () => {
   const [mainMenuOpen, setMainMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [selectedPageIndex, setSelectedPageIndex] = useState(1);
@@ -70,12 +70,12 @@ export function PersonalFinanceLayout() {
 
   const userId = sessionStorage.getItem('userId');
 
-  async function setIncomeExpenseData() {
+  const setIncomeExpenseData = async () => {
     //Before creating income & expense summary, creating or refreshing the relevant connections is required
     //Creating expense summary between 2020-01 - 2021-01
     axios
       .post(`/api/create-expense?userId=${userId}`, { fromMonth: '2022-03', toMonth: '2023-02' })
-      .then(function (response) {
+      .then(response => {
         const data = response.data;
         const paymentsTotal = data.payments.reduce((sum, p) => {
           return sum + parseInt(p.avgMonthly);
@@ -133,7 +133,7 @@ export function PersonalFinanceLayout() {
 
         setExpenseLoading(false);
       })
-      .catch(function (error) {
+      .catch(error => {
         console.warn(error);
         setExpenseMonthlyAvgData(0);
         setExpenseData([]);
@@ -145,7 +145,7 @@ export function PersonalFinanceLayout() {
     //Creating income summary between 2020-01 - 2021-01
     axios
       .post(`/api/create-income?userId=${userId}`, { fromMonth: '2022-03', toMonth: '2023-02' })
-      .then(function (response) {
+      .then(response => {
         const data = response.data;
 
         setIncomeMonthlyAvgData(parseInt(data.summary.regularIncomeAvg) + parseInt(data.summary.irregularIncomeAvg));
@@ -177,7 +177,7 @@ export function PersonalFinanceLayout() {
 
         setIncomeLoading(false);
       })
-      .catch(function (error) {
+      .catch(error => {
         console.warn(error);
         setIncomeMonthlyAvgData(0);
         setIncomeData([]);
@@ -185,7 +185,7 @@ export function PersonalFinanceLayout() {
       });
 
     setIncomeExpenseApiCalled(true);
-  }
+  };
 
   useEffect(() => {
     const refreshConnectionFunc = async () => {
@@ -205,9 +205,9 @@ export function PersonalFinanceLayout() {
     }
   }, [completed, incomeExpenseApiCalled, refreshConnectionApiCalled]);
 
-  function aggregateChangeHistoryAmountByMonth(changeHistory) {
+  const aggregateChangeHistoryAmountByMonth = changeHistory => {
     return Object.entries(
-      changeHistory.reduce(function (r, a) {
+      changeHistory.reduce((r, a) => {
         if (a.date) {
           let date = new Date(a.date).toLocaleString('en-us', { month: 'short' });
           r[date] = r[date] || [];
@@ -219,12 +219,12 @@ export function PersonalFinanceLayout() {
     ).map(([key, value]) => {
       return { month: key, aggregatedAmount: value.aggregatedAmount };
     });
-  }
+  };
 
   //Grouping change history values as amount or object by month
-  function groupChangeHistoryByMonth(changeHistory, absoluteValue) {
+  const groupChangeHistoryByMonth = (changeHistory, absoluteValue) => {
     return Object.entries(
-      changeHistory.reduce(function (r, a) {
+      changeHistory.reduce((r, a) => {
         if (a.date) {
           r[a.date] = r[a.date] || [];
           r[a.date].push(absoluteValue ? Math.abs(a.amount) : { amount: a.amount, description: a.description });
@@ -232,12 +232,12 @@ export function PersonalFinanceLayout() {
         }
       }, Object.create(null))
     );
-  }
+  };
 
   //Grouping change history values as object by day
-  function groupChangeHistoryByDay(changeHistory) {
+  const groupChangeHistoryByDay = changeHistory => {
     return Object.entries(
-      changeHistory.reduce(function (r, a) {
+      changeHistory.reduce((r, a) => {
         if (a.date) {
           r[a.date.slice(0, 10)] = r[a.date.slice(0, 10)] || [];
           r[a.date.slice(0, 10)].push({ amount: a.amount, description: a.source });
@@ -245,10 +245,10 @@ export function PersonalFinanceLayout() {
         }
       }, Object.create(null))
     );
-  }
+  };
 
   //Grouping, ordering and getting sum of payments change histories by day
-  function prepareExpenseMonthly(paymentsChangeHistory) {
+  const prepareExpenseMonthly = paymentsChangeHistory => {
     const groupedByMonthExpenses = groupChangeHistoryByMonth(paymentsChangeHistory, true);
 
     const orderedExpenseTotalByMonth = groupedByMonthExpenses
@@ -272,20 +272,20 @@ export function PersonalFinanceLayout() {
     return orderedExpenseTotalByMonth.map(x => {
       return { ...x, key: new Date(x.key + '-01').toLocaleString('en-us', { month: 'short' }) };
     });
-  }
+  };
 
   //Grouping and ordering expense change histories by day
-  function prepareExpenseByDate(expenseChangeHistory) {
+  const prepareExpenseByDate = expenseChangeHistory => {
     const groupedChangeHistory = groupChangeHistoryByMonth(expenseChangeHistory);
 
     groupedChangeHistory.forEach(x => (x[0] = x[0] + '-01'));
     groupedChangeHistory.sort((a, b) => (a[0] > b[0] ? 1 : b[0] > a[0] ? -1 : 0));
 
     return groupedChangeHistory;
-  }
+  };
 
   //Manage main and profile menus on desktop
-  function manageMenus(isMainMenu) {
+  const manageMenus = isMainMenu => {
     if (isMainMenu) {
       setProfileMenuOpen(false);
       setMainMenuOpen(!mainMenuOpen);
@@ -294,22 +294,22 @@ export function PersonalFinanceLayout() {
 
     setMainMenuOpen(false);
     setProfileMenuOpen(!profileMenuOpen);
-  }
+  };
 
   //When any page item is clicked to show
-  function managePages(selectedPageIndex, selectedMenuTitle) {
+  const managePages = (selectedPageIndex, selectedMenuTitle) => {
     setSelectedMenuTitle(selectedMenuTitle);
     setMainMenuOpen(false);
     setSelectedPageIndex(selectedPageIndex);
     manageDetailPages(false, false, false);
-  }
+  };
 
   //Hide or show detail pages depending on context
-  function manageDetailPages(hideHomePageItems, hideTransactionPageItems, hideIncomeExpensePageItems) {
+  const manageDetailPages = (hideHomePageItems, hideTransactionPageItems, hideIncomeExpensePageItems) => {
     setHideHomePageItems(hideHomePageItems);
     setHideTransactionPageItems(hideTransactionPageItems);
     setHideIncomeExpensePageItems(hideIncomeExpensePageItems);
-  }
+  };
 
   return (
     <>
@@ -527,7 +527,7 @@ export function PersonalFinanceLayout() {
       </div>
     </>
   );
-}
+};
 
 export const MOBILE_MENU_ITEMS = [
   { pageIndex: homePageIndex, title: 'Home', image: '/home.svg', selectedImage: '/home-white.svg' },

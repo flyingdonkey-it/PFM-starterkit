@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-export function Modal({ children, isOpen, onClose, initialFocus }) {
+export const Modal = ({ children, isOpen, onClose, initialFocus }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 z-40 overflow-y-auto" onClose={onClose} initialFocus={initialFocus}>
@@ -38,12 +38,12 @@ export function Modal({ children, isOpen, onClose, initialFocus }) {
       </Dialog>
     </Transition>
   );
-}
+};
 
-export function ModalTitle({ children }) {
+export const ModalTitle = ({ children }) => {
   return (
     <Dialog.Title as="h3" className="text-2xl font-semibold leading-tight tracking-tight text-primary-bold">
       {children}
     </Dialog.Title>
   );
-}
+};

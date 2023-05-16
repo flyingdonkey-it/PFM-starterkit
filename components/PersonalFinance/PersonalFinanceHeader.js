@@ -1,20 +1,20 @@
 import { useRouter } from 'next/router';
 import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 
-export function PersonalFinanceHeader({ isMenuOpen, menuIconClick, profileMenuOpenClick, showProfileLine }) {
+export const PersonalFinanceHeader = ({ isMenuOpen, menuIconClick, profileMenuOpenClick, showProfileLine }) => {
   const { resetForNewAccount } = useAccountVerificationForm();
 
   const router = useRouter();
 
   //Redirecting to account verification for adding new account
-  function onAddAccountClick() {
+  const onAddAccountClick = () => {
     resetForNewAccount();
-  }
+  };
 
   //Redirecting to profile page
-  function onViewProfileClick() {
+  const onViewProfileClick = () => {
     router.push('/profile');
-  }
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-30 bg-header shadow-shead">
@@ -51,4 +51,4 @@ export function PersonalFinanceHeader({ isMenuOpen, menuIconClick, profileMenuOp
       )}
     </div>
   );
-}
+};

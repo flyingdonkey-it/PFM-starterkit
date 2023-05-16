@@ -14,12 +14,12 @@ const REFRESH_INTERVAL = 1000 * 60 * 30; // 30 minutes
 const TOKEN_KEY = 'basiqApiClientAccessToken';
 const REFRESH_DATE_KEY = 'basiqApiClientAccessTokenRefreshDate';
 
-export async function getBasiqAuthorizationHeader() {
+export const getBasiqAuthorizationHeader = async () => {
   const token = await getClientToken();
   return `Bearer ${token}`;
-}
+};
 
-export async function getClientToken(userId) {
+export const getClientToken = async userId => {
   let token = getClientTokenFromLocalStorage();
   const refreshDate = getClientTokenRefreshDateFromLocalStorage() || 0;
 
@@ -29,9 +29,9 @@ export async function getClientToken(userId) {
   }
 
   return token;
-}
+};
 
-async function updateClientToken(userId) {
+const updateClientToken = async userId => {
   const token = await getNewClientToken(userId);
   setClientTokenInLocalStorage(token);
 
@@ -39,25 +39,25 @@ async function updateClientToken(userId) {
   setClientTokenRefreshDateInLocalStorage(refreshDate);
 
   return token;
-}
+};
 
-async function getNewClientToken(userId) {
+const getNewClientToken = async userId => {
   const { data } = await axios.get('/api/client-token', { params: { userId } });
   return data;
-}
+};
 
-export function getClientTokenFromLocalStorage() {
+export const getClientTokenFromLocalStorage = () => {
   return localStorage.getItem(TOKEN_KEY);
-}
+};
 
-export function setClientTokenInLocalStorage(token) {
+export const setClientTokenInLocalStorage = token => {
   localStorage.setItem(TOKEN_KEY, token);
-}
+};
 
-export function getClientTokenRefreshDateFromLocalStorage() {
+export const getClientTokenRefreshDateFromLocalStorage = () => {
   return localStorage.getItem(REFRESH_DATE_KEY);
-}
+};
 
-export function setClientTokenRefreshDateInLocalStorage(token) {
+export const setClientTokenRefreshDateInLocalStorage = token => {
   localStorage.setItem(REFRESH_DATE_KEY, token);
-}
+};

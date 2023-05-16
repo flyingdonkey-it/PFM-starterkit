@@ -1,8 +1,8 @@
-export function PersonalFinanceFooter({ menuItems, middleMenuItems, onMenuItemClick }) {
+export const PersonalFinanceFooter = ({ menuItems, middleMenuItems, onMenuItemClick }) => {
   //When any page item clicked
-  function onItemClick(selectedPageIndex) {
+  const onItemClick = selectedPageIndex => {
     onMenuItemClick(selectedPageIndex);
-  }
+  };
 
   //DESKTOP VIEW ONLY
   return (
@@ -55,4 +55,4 @@ export function PersonalFinanceFooter({ menuItems, middleMenuItems, onMenuItemCl
       </div>
     </div>
   );
-}
+};

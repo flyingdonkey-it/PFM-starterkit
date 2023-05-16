@@ -5,60 +5,65 @@ import { TransactionItemDetail } from './TransactionItemDetail';
 import { Calendar } from '@/components/Calendar';
 import { useToggleState } from '@/utils/useToggleState';
 
-export function TransactionPage({ inTransactionsPage, managePages, manageDetailPages, dateGroupedTransactions = [] }) {
+export const TransactionPage = ({
+  inTransactionsPage,
+  managePages,
+  manageDetailPages,
+  dateGroupedTransactions = [],
+}) => {
   const [showDetail, setShowDetail] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [showCalendar, setShowCalendar] = useToggleState(false);
   const [currentAccount, setCurrentAccount] = useState({});
 
-  function getCurrentAccount() {
+  const getCurrentAccount = () => {
     const userId = sessionStorage.getItem('userId');
     const currentAccountId = sessionStorage.getItem('currentAccountId');
 
     axios
       .get(`/api/get-account`, { params: { userId, accountId: currentAccountId } })
-      .then(function (response) {
+      .then(response => {
         setCurrentAccount(response.data);
       })
-      .catch(function (error) {
+      .catch(error => {
         console.warn(error);
         setCurrentAccount({});
       });
-  }
+  };
 
   //Open transaction detail
-  function onTransactionItemClick(e) {
+  const onTransactionItemClick = e => {
     if (!inTransactionsPage) {
       manageDetailPages(true, false, true);
     }
 
     setShowDetail(true);
     setSelectedTransaction(e.transactionDetail);
-  }
+  };
 
   //Close transaction detail
-  function onCloseTransactionDetailClick() {
+  const onCloseTransactionDetailClick = () => {
     if (!inTransactionsPage) {
       manageDetailPages(false, false, false);
     }
 
     setSelectedTransaction({});
     setShowDetail(false);
-  }
+  };
 
   //Redirect to transactions page
-  function onSeeAllClick() {
+  const onSeeAllClick = () => {
     managePages(4, 'Upload');
-  }
+  };
 
   //When any date clicked on calendar show transaction detail
-  function onCalendarItemClick(date) {
+  const onCalendarItemClick = date => {
     setShowDetail(true);
     const selectedDate = dateGroupedTransactions.find(item => item[0] === date);
     selectedDate.map(item => {
       setSelectedTransaction(item[0]);
     });
-  }
+  };
 
   useEffect(() => {
     getCurrentAccount();
@@ -144,4 +149,4 @@ export function TransactionPage({ inTransactionsPage, managePages, manageDetailP
       )}
     </>
   );
-}
+};

@@ -7,7 +7,7 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/deleteconsent
  */
 
-export default async function deleteConsent(req, res) {
+const deleteConsent = async (req, res) => {
   if (req.method === 'DELETE') {
     try {
       const { userId, consentId } = req.query;
@@ -28,4 +28,6 @@ export default async function deleteConsent(req, res) {
     // Only POST is allowed
     res.status(400).json({ message: 'Invalid method' });
   }
-}
+};
+
+export default deleteConsent;

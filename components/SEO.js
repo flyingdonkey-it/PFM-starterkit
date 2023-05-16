@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export function SEO({ title }) {
+export const SEO = ({ title }) => {
   const documentTitle = ['Piper', title].filter(Boolean).join(' - ');
   return (
     <Head>
@@ -14,4 +14,4 @@ export function SEO({ title }) {
       <meta name="theme-color" content="#ffffff" />
     </Head>
   );
-}
+};

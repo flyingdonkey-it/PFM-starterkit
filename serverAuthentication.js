@@ -16,25 +16,25 @@ const REFRESH_INTERVAL = 1000 * 60 * 30; // 30 minutes
 let serverToken = undefined;
 let serverTokenRefreshDate = 0;
 
-export async function getBasiqAuthorizationHeader() {
+export const getBasiqAuthorizationHeader = async () => {
   const token = await getServerToken();
   return `Bearer ${token}`;
-}
+};
 
-async function getServerToken() {
+const getServerToken = async () => {
   if (!serverToken || Date.now() - serverTokenRefreshDate > REFRESH_INTERVAL) {
     // If we don't have a server token in memory, or the token has expired, fetch a new one
     await updateServerToken();
   }
   return serverToken;
-}
+};
 
-async function updateServerToken() {
+const updateServerToken = async () => {
   serverToken = await getNewServerToken();
   serverTokenRefreshDate = Date.now();
-}
+};
 
-async function getNewServerToken() {
+const getNewServerToken = async () => {
   const { data } = await axios.post('https://au-api.basiq.io/token', qs.stringify({ scope: 'SERVER_ACCESS' }), {
     headers: {
       Authorization: `Basic ${process.env.BASIQ_API_KEY}`,
@@ -43,9 +43,9 @@ async function getNewServerToken() {
     },
   });
   return data.access_token;
-}
+};
 
-export async function getNewClientToken(userId) {
+export const getNewClientToken = async userId => {
   const { data } = await axios.post('https://au-api.basiq.io/token', qs.stringify({ scope: 'CLIENT_ACCESS', userId }), {
     headers: {
       Authorization: `Basic ${process.env.BASIQ_API_KEY}`,
@@ -54,4 +54,4 @@ export async function getNewClientToken(userId) {
     },
   });
   return data.access_token;
-}
+};

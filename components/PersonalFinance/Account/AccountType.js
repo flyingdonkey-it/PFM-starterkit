@@ -1,7 +1,7 @@
 import React from 'react';
 import { AccountItem } from './AccountItem';
 
-export function AccountType({ loading, accounts, institutions, accountsType, onAccountItemClick, showDetail }) {
+export const AccountType = ({ loading, accounts, institutions, accountsType, onAccountItemClick, showDetail }) => {
   return (
     <div className="flex-col mb-3">
       <div className="flex justify-start mb-2 bg-primary sm:pl-7 pr-7">
@@ -26,4 +26,4 @@ export function AccountType({ loading, accounts, institutions, accountsType, onA
           )}
     </div>
   );
-}
+};

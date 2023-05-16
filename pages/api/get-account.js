@@ -7,20 +7,17 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://au-api.basiq.io/users/{userId}/accounts/{accountId}
  */
 
-export default async function getAccount(req, res) {
+const getAccount = async (req, res) => {
   if (req.method === 'GET') {
     try {
       const { userId, accountId } = req.query;
-      const { data } = await axios.get(
-        `https://au-api.basiq.io/users/${userId}/accounts/${accountId}`,
-        {
-          headers: {
-            Authorization: await getBasiqAuthorizationHeader(),
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          }
-        }
-      );
+      const { data } = await axios.get(`https://au-api.basiq.io/users/${userId}/accounts/${accountId}`, {
+        headers: {
+          Authorization: await getBasiqAuthorizationHeader(),
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
       res.status(200).json(data);
     } catch (error) {
       res.status(400).json({ message: error.message });
@@ -29,4 +26,6 @@ export default async function getAccount(req, res) {
     // Only GET is allowed
     res.status(400).json({ message: 'Invalid method' });
   }
-}
+};
+
+export default getAccount;

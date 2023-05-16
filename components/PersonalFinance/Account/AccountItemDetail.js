@@ -1,15 +1,15 @@
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function AccountItemDetail({ onClose, selectedAccount }) {
+export const AccountItemDetail = ({ onClose, selectedAccount }) => {
   //Close account detail page
-  function onBackButtonClick() {
+  const onBackButtonClick = () => {
     onClose();
-  }
+  };
 
   //Formatting date field
-  function getDateAsFormatted(updateDate) {
+  const getDateAsFormatted = updateDate => {
     return `${updateDate.slice(8, 10)}/${updateDate.slice(5, 7)}/${updateDate.slice(0, 4)} ${updateDate.slice(11, 16)}`;
-  }
+  };
 
   return (
     <div>
@@ -62,4 +62,4 @@ export function AccountItemDetail({ onClose, selectedAccount }) {
       </div>
     </div>
   );
-}
+};

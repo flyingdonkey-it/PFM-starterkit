@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 import { axios } from '@/utils/axios';
 
-export function ProfileLayout({ open, setMenuOpen }) {
+export const ProfileLayout = ({ open, setMenuOpen }) => {
   const [consentOpen, setConsentOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
@@ -11,7 +11,7 @@ export function ProfileLayout({ open, setMenuOpen }) {
 
   const { goToConsent } = useAccountVerificationForm();
 
-  function manageTabs(isConsentManagement) {
+  const manageTabs = isConsentManagement => {
     if (isConsentManagement) {
       setNotificationsOpen(false);
       setConsentOpen(!consentOpen);
@@ -20,13 +20,13 @@ export function ProfileLayout({ open, setMenuOpen }) {
 
     setConsentOpen(false);
     setNotificationsOpen(!notificationsOpen);
-  }
+  };
 
-  function onCloseButtonClick() {
+  const onCloseButtonClick = () => {
     router.push('/personal-finance');
-  }
+  };
 
-  function onRevokeConsentClick() {
+  const onRevokeConsentClick = () => {
     const userId = sessionStorage.getItem('userId');
     axios
       .get(`/api/consents?userId=${userId}`)
@@ -50,11 +50,11 @@ export function ProfileLayout({ open, setMenuOpen }) {
       .catch(error => {
         console.log('Error: ', error);
       });
-  }
+  };
 
-  function onManageConsentClick() {
+  const onManageConsentClick = () => {
     goToConsent();
-  }
+  };
 
   return (
     <>
@@ -260,4 +260,4 @@ export function ProfileLayout({ open, setMenuOpen }) {
       </div>
     </>
   );
-}
+};

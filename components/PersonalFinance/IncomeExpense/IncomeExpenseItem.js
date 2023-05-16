@@ -3,19 +3,19 @@ import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { dateConverter } from '@/utils/dateConverter';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function IncomeExpenseItem({
+export const IncomeExpenseItem = ({
   incomeLoading,
   expenseLoading,
   selectedDate,
   incomeDetails,
   expenseDetails,
   closeIncomeExpenseDetailClick,
-}) {
+}) => {
   const dateTitle = dateConverter(selectedDate);
 
-  function onBackButtonClick() {
+  const onBackButtonClick = () => {
     closeIncomeExpenseDetailClick();
-  }
+  };
 
   return (
     <div>
@@ -76,4 +76,4 @@ export function IncomeExpenseItem({
       )}
     </div>
   );
-}
+};

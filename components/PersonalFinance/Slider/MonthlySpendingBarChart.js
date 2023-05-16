@@ -1,7 +1,7 @@
 import { CustomBarChart } from '@/components/CustomBarChart';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
-export function MonthlySpendingBarChart({ expenseMonthly, expenseLoading, showInChartSlider, minWidth, minHeight }) {
+export const MonthlySpendingBarChart = ({ expenseMonthly, expenseLoading, showInChartSlider, minWidth, minHeight }) => {
   return (
     <div
       className={`${
@@ -51,4 +51,4 @@ export function MonthlySpendingBarChart({ expenseMonthly, expenseLoading, showIn
       </div>
     </div>
   );
-}
+};

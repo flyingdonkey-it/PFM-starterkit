@@ -7,7 +7,7 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/refreshconnections
  */
 
-export default async function refreshConnection(req, res) {
+const refreshConnection = async (req, res) => {
   if (req.method === 'POST') {
     const { userId } = req.query;
     try {
@@ -18,7 +18,7 @@ export default async function refreshConnection(req, res) {
           Authorization: await getBasiqAuthorizationHeader(),
           Accept: 'application/json',
           'Content-Type': 'application/json',
-        }
+        },
       });
       res.status(200).json(data);
     } catch (error) {
@@ -28,4 +28,6 @@ export default async function refreshConnection(req, res) {
     // Only POST is allowed
     res.status(400).json({ message: 'Invalid method' });
   }
-}
+};
+
+export default refreshConnection;

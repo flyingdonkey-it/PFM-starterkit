@@ -4,7 +4,7 @@ import { StepHeading } from './StepHeading';
 import { StepDescription } from './StepDescription';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function AccountVerificationFormStep5Summary() {
+export const AccountVerificationFormStep5Summary = () => {
   const { finish, accountVerificationFormState } = useAccountVerificationForm();
 
   const { selectedAccount } = accountVerificationFormState;
@@ -104,4 +104,4 @@ export function AccountVerificationFormStep5Summary() {
       </div>
     </div>
   );
-}
+};

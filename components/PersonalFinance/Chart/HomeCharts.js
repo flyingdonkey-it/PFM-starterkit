@@ -34,19 +34,19 @@ const upcomingPayments = [
   },
 ];
 
-export function HomeCharts({ expenseData, incomeData, expenseLoading, incomeLoading }) {
+export const HomeCharts = ({ expenseData, incomeData, expenseLoading, incomeLoading }) => {
   const [selectedChartItem, setSelectedChartItem] = useState(1);
 
   //Click title to show a chart
-  function onItemClick(itemIndex) {
+  const onItemClick = itemIndex => {
     setSelectedChartItem(itemIndex);
-  }
+  };
 
   //Slide action to show a chart
-  function handleClickIndicator(e, index) {
+  const handleClickIndicator = (e, index) => {
     e.preventDefault();
     setSelectedChartItem(index);
-  }
+  };
 
   return (
     <div className="flex flex-col mt-12 mb-12 sm:w-2/5 sm:mt-1">
@@ -151,4 +151,4 @@ export function HomeCharts({ expenseData, incomeData, expenseLoading, incomeLoad
       </div>
     </div>
   );
-}
+};
