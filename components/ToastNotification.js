@@ -2,7 +2,7 @@ import { Transition } from '@headlessui/react';
 import { toast, Toaster, resolveValue } from 'react-hot-toast';
 
 // ToastNotification based on https://react-hot-toast.com/docs/toaster
-export function ToastNotification() {
+export const ToastNotification = () => {
   return (
     <Toaster
       containerClassName="mx-auto w-72 sm:w-96"
@@ -85,7 +85,7 @@ export function ToastNotification() {
       )}
     </Toaster>
   );
-}
+};
 
 const APPEARANCE_MAP = {
   critical: 'bg-critical-subtle border-critical-bold',

@@ -7,7 +7,7 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/create-a-user
  */
 
-export default async function createUser(req, res) {
+const createUser = async (req, res) => {
   if (req.method === 'POST') {
     try {
       const { data } = await axios({
@@ -28,4 +28,6 @@ export default async function createUser(req, res) {
     // Only POST is allowed
     res.status(400).json({ message: 'Invalid method' });
   }
-}
+};
+
+export default createUser;

@@ -11,7 +11,7 @@ import { getBasiqAuthorizationHeader } from '../clientAuthentication';
 export const axios = Axios.create();
 
 // Intercept all requests made to the Basiq API and insert a "Authorization" header and other common headers
-axios.interceptors.request.use(async function (request) {
+axios.interceptors.request.use(async request => {
   const { url, headers } = request;
   if (url?.startsWith('https://au-api.basiq.io/')) {
     headers.Authorization = await getBasiqAuthorizationHeader();
@@ -24,11 +24,11 @@ axios.interceptors.request.use(async function (request) {
 // Intercept all responses from the Basiq API and a provide more useful error messages to the user
 axios.interceptors.response.use(
   // Any status code that lie within the range of 2xx cause this function to trigger
-  function (response) {
+  response => {
     return response;
   },
   // Any status codes that falls outside the range of 2xx cause this function to trigger
-  function (error) {
+  error => {
     if (error.response.config.url.startsWith('https://au-api.basiq.io/') && error.response.status === 403) {
       if (process.env.NODE_ENV !== 'production') {
         // When in development mode, show a detailed error

@@ -3,7 +3,7 @@ import { SimplePieChart } from '@/components/SimplePieChart';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function IncomeExpensePieChart({ incomeMonthlyAvg, expenseMonthlyAvg, incomeLoading, expenseLoading }) {
+export const IncomeExpensePieChart = ({ incomeMonthlyAvg, expenseMonthlyAvg, incomeLoading, expenseLoading }) => {
   const [incomeExpenseChartData, setIncomeExpenseChartData] = useState([]);
 
   //Using monthly averages of income & expense in pie chart
@@ -55,4 +55,4 @@ export function IncomeExpensePieChart({ incomeMonthlyAvg, expenseMonthlyAvg, inc
       </div>
     </div>
   );
-}
+};

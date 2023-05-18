@@ -1,9 +1,9 @@
 import { DatePicker } from 'antd';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function Calendar({ data, open, onCalendarItemClick }) {
+export const Calendar = ({ data, open, onCalendarItemClick }) => {
   //Getting sum of amounts in the date
-  function sumAmount(date, isPositive) {
+  const sumAmount = (date, isPositive) => {
     return data.map(item => {
       if (date === item[0]) {
         const initialValue = 0;
@@ -17,7 +17,7 @@ export function Calendar({ data, open, onCalendarItemClick }) {
         return formatCurrency(sum.toFixed(0), true);
       }
     });
-  }
+  };
 
   return (
     <DatePicker
@@ -54,4 +54,4 @@ export function Calendar({ data, open, onCalendarItemClick }) {
       }}
     />
   );
-}
+};

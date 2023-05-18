@@ -1,7 +1,7 @@
 import { Button } from '../Button';
 import { Modal, ModalTitle } from '../Modal';
 
-export function AccountVerificationFormCancellationModal({ isOpen, onClose, onConfirm, cancelling }) {
+export const AccountVerificationFormCancellationModal = ({ isOpen, onClose, onConfirm, cancelling }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalTitle>
@@ -22,4 +22,4 @@ export function AccountVerificationFormCancellationModal({ isOpen, onClose, onCo
       </div>
     </Modal>
   );
-}
+};

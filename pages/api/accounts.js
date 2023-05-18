@@ -7,19 +7,16 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/list-all-accounts
  */
 
-export default async function accounts(req, res) {
+const accounts = async (req, res) => {
   const { userId } = req.query;
   try {
-    const { data } = await axios.get(
-      `https://au-api.basiq.io/users/${userId}/accounts`,
-      {
-        headers: {
-          Authorization: await getBasiqAuthorizationHeader(),
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const { data } = await axios.get(`https://au-api.basiq.io/users/${userId}/accounts`, {
+      headers: {
+        Authorization: await getBasiqAuthorizationHeader(),
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
 
     const sortedAccounts = data.data
       .map(account => {
@@ -38,4 +35,6 @@ export default async function accounts(req, res) {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
+
+export default accounts;

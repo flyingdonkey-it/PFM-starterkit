@@ -1,7 +1,7 @@
 import { ProfileLayout } from '@/components/PersonalFinance';
 import { SEO } from '@/components/SEO';
 
-export default function Profile() {
+const Profile = () => {
   return (
     <>
       <SEO title="Personal Finance" />
@@ -10,4 +10,6 @@ export default function Profile() {
       </main>
     </>
   );
-}
+};
+
+export default Profile;

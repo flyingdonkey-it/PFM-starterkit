@@ -1,7 +1,7 @@
 import { ActiveShapePieChart } from '@/components/ActiveShapePieChart';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
-export function MonthlySpendingPieChart({ expenseData, expenseLoading, hideSeeMore, showInChartSlider }) {
+export const MonthlySpendingPieChart = ({ expenseData, expenseLoading, hideSeeMore, showInChartSlider }) => {
   return (
     <div className="h-80 sm:p-4 flex items-center justify-center">
       {expenseData && expenseData.length > 0 ? (
@@ -25,4 +25,4 @@ export function MonthlySpendingPieChart({ expenseData, expenseLoading, hideSeeMo
       )}
     </div>
   );
-}
+};

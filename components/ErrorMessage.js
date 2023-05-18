@@ -1,4 +1,4 @@
-export function ErrorMessage({ message }) {
+export const ErrorMessage = ({ message }) => {
   return (
     <div role="alert" className="flex p-3 border-2 rounded-lg bg-critical-subtle border-critical-bold space-x-3">
       {/* Icon: exclamation-circle (solid) */}
@@ -17,4 +17,4 @@ export function ErrorMessage({ message }) {
       <span className="font-medium">{message}</span>
     </div>
   );
-}
+};

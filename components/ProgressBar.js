@@ -1,4 +1,4 @@
-export function ProgressBar({ value }) {
+export const ProgressBar = ({ value }) => {
   return (
     <div className="relative w-full bg-white h-1.5">
       <div
@@ -9,4 +9,4 @@ export function ProgressBar({ value }) {
       />
     </div>
   );
-}
+};

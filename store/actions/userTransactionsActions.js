@@ -1,36 +1,36 @@
 import axios from 'axios';
 import { UserTransactionsReducerActions } from '../reducers/userTransactionsReducer';
 
-export function fetchUserTransactions(userId) {
-  return async function (dispatch) {
+export const fetchUserTransactions = userId => {
+  return async dispatch => {
     dispatch(userTransactionsLoading());
     const transactionsData = await getAccountTransactions(userId);
     dispatch(userTransactionsLoaded(transactionsData));
   };
-}
+};
 
-export function userTransactionsLoaded(payload) {
+export const userTransactionsLoaded = payload => {
   return {
     type: UserTransactionsReducerActions.UserTransactionsLoaded,
     payload: payload,
   };
-}
+};
 
-export function userTransactionsLoading() {
+export const userTransactionsLoading = () => {
   return {
     type: UserTransactionsReducerActions.UserTransactionsLoading,
   };
-}
+};
 
-async function getAccountTransactions(userId) {
+const getAccountTransactions = async userId => {
   let dateGroupedTransactions = [];
   let transactionsError = false;
 
   await axios
     .get(`/api/transactions`, { params: { userId, limit: 30 } })
-    .then(function (response) {
+    .then(response => {
       //Group all transactions by postDate
-      dateGroupedTransactions = response.data.reduce(function (r, a) {
+      dateGroupedTransactions = response.data.reduce((r, a) => {
         if (a.postDate) {
           r[a.postDate.slice(0, 10)] = r[a.postDate.slice(0, 10)] || [];
           r[a.postDate.slice(0, 10)].push(a);
@@ -40,7 +40,7 @@ async function getAccountTransactions(userId) {
 
       dateGroupedTransactions = Object.entries(dateGroupedTransactions);
     })
-    .catch(function (error) {
+    .catch(error => {
       console.warn(error);
       transactionsError = true;
     });
@@ -50,4 +50,4 @@ async function getAccountTransactions(userId) {
     transactionsError,
     isCompleted: !transactionsError,
   };
-}
+};

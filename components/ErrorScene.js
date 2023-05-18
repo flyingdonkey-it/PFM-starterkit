@@ -1,6 +1,6 @@
 import { Button } from './Button';
 
-export function ErrorScene({ title, message, actionOnClick }) {
+export const ErrorScene = ({ title, message, actionOnClick }) => {
   return (
     <div role="alert" className="space-y-6 sm:space-y-8">
       <div className="flex flex-col items-center rounded-lg space-y-6 sm:space-y-8">
@@ -27,4 +27,4 @@ export function ErrorScene({ title, message, actionOnClick }) {
       </Button>
     </div>
   );
-}
+};

@@ -6,7 +6,7 @@ import { useAccountVerificationForm } from './AccountVerificationFormProvider';
 import { Button } from '@/components/Button';
 import { useTernaryState } from '@/utils/useTernaryState';
 
-export function AccountVerificationFormStep1PreConsent() {
+export const AccountVerificationFormStep1PreConsent = () => {
   const { goToConsent } = useAccountVerificationForm();
   const [submitting, setSubmitting] = useState(false);
   // State for managing hiding/showing of the learn more model
@@ -112,4 +112,4 @@ export function AccountVerificationFormStep1PreConsent() {
       </div>
     </div>
   );
-}
+};

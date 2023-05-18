@@ -5,7 +5,7 @@ import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { PlanetIllustrations } from '@/components/PlanetIllustrations';
 import { SEO } from '@/components/SEO';
 
-export default function Home() {
+const Home = () => {
   const { basiqConnection, reset, hasCompletedForm } = useAccountVerificationForm();
 
   const basiqConnectionInProgress = basiqConnection?.inProgress;
@@ -92,17 +92,17 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
 
-function IndicatorConnectionInProgress() {
+const IndicatorConnectionInProgress = () => {
   return (
     <span className="inline-flex items-center justify-center w-full h-full p-1 text-white rounded-full bg-primary-bold">
       <LoadingSpinner />
     </span>
   );
-}
+};
 
-function IndicatorConnectionFinished({ error }) {
+const IndicatorConnectionFinished = ({ error }) => {
   return (
     <>
       <span
@@ -147,4 +147,6 @@ function IndicatorConnectionFinished({ error }) {
       </span>
     </>
   );
-}
+};
+
+export default Home;

@@ -1,14 +1,14 @@
 import { Button } from '@/components/Button';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function TransactionItemDetail({ detail, closeTransactionDetailClick, currentAccount }) {
-  function onBackButtonClick() {
+export const TransactionItemDetail = ({ detail, closeTransactionDetailClick, currentAccount }) => {
+  const onBackButtonClick = () => {
     closeTransactionDetailClick();
-  }
+  };
 
-  function getPostDateAsFormatted(postDate) {
+  const getPostDateAsFormatted = postDate => {
     return `${postDate.slice(8, 10)}/${postDate.slice(5, 7)}/${postDate.slice(0, 4)} ${postDate.slice(11, 16)}`;
-  }
+  };
 
   return (
     <div className="sm:flex sm:items-center sm:justify-center">
@@ -95,4 +95,4 @@ export function TransactionItemDetail({ detail, closeTransactionDetailClick, cur
       </div>
     </div>
   );
-}
+};

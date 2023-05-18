@@ -3,7 +3,13 @@ import { IncomeExpenseItem } from './IncomeExpenseItem';
 import { useToggleState } from '@/utils/useToggleState';
 import { Calendar } from '@/components/Calendar';
 
-export function IncomeExpensePage({ incomeLoading, expenseLoading, incomesByDate, expensesByDate, manageDetailPages }) {
+export const IncomeExpensePage = ({
+  incomeLoading,
+  expenseLoading,
+  incomesByDate,
+  expensesByDate,
+  manageDetailPages,
+}) => {
   const [showCalendar, setShowCalendar] = useToggleState(false);
   const [incomeExpenseByDate, setIncomeExpenseByDate] = useState([]);
   const [showDetail, setShowDetail] = useState(false);
@@ -12,7 +18,7 @@ export function IncomeExpensePage({ incomeLoading, expenseLoading, incomesByDate
   const [selectedExpenses, setSelectedExpenses] = useState([]);
 
   //When any date clicked on calendar aggregate the income & expense items on this date
-  function onCalendarItemClick(date) {
+  const onCalendarItemClick = date => {
     setShowDetail(true);
     manageDetailPages(true, true, false);
 
@@ -31,15 +37,15 @@ export function IncomeExpensePage({ incomeLoading, expenseLoading, incomesByDate
       selectedExpenseValues[1].map(x => expenses.push(x));
     }
     setSelectedExpenses(expenses);
-  }
+  };
 
   //Close income expense detail page
-  function onCloseIncomeExpenseDetailClick() {
+  const onCloseIncomeExpenseDetailClick = () => {
     manageDetailPages(false, false, false);
     setSelectedIncomes({});
     setSelectedExpenses({});
     setShowDetail(false);
-  }
+  };
 
   //Aggregate income & expense data to show in calendar
   useEffect(() => {
@@ -90,4 +96,4 @@ export function IncomeExpensePage({ incomeLoading, expenseLoading, incomesByDate
       )}
     </>
   );
-}
+};

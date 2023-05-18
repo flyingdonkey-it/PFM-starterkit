@@ -1,7 +1,7 @@
 import { CustomBarChart } from '@/components/CustomBarChart';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
-export function MonthlyIncomeBarChart({ incomeData, incomeLoading, chartWidth, hideSeeMore, minWidth, minHeight }) {
+export const MonthlyIncomeBarChart = ({ incomeData, incomeLoading, chartWidth, hideSeeMore, minWidth, minHeight }) => {
   return (
     <div className="h-80 sm:p-6">
       {incomeData && incomeData.length > 0 ? (
@@ -25,4 +25,4 @@ export function MonthlyIncomeBarChart({ incomeData, incomeLoading, chartWidth, h
       )}
     </div>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function Savings({ balance, accountsLoading, institutionCode }) {
+export const Savings = ({ balance, accountsLoading, institutionCode }) => {
   return (
     <div className="border-2 shadow-md h-44 sm:h-64 bg-[#fbfbfb] rounded-2xl border-[#e0eaff] sm:bg-[#F5F7F8]">
       <div className="mt-4 mb-2 ml-7 mr-9 sm:mb-5">
@@ -41,4 +41,4 @@ export function Savings({ balance, accountsLoading, institutionCode }) {
       </div>
     </div>
   );
-}
+};

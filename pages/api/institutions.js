@@ -7,7 +7,7 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/list-all-institutions
  */
 
-export default async function institutions(req, res) {
+const institutions = async (req, res) => {
   try {
     const { data } = await axios.get('https://au-api.basiq.io/institutions', {
       headers: {
@@ -36,4 +36,6 @@ export default async function institutions(req, res) {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
+
+export default institutions;

@@ -7,7 +7,7 @@ const { getBasiqAuthorizationHeader } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/postexpenses
  */
 
-export default async function createExpense(req, res) {
+const createExpense = async (req, res) => {
   if (req.method === 'POST') {
     const { userId } = req.query;
     try {
@@ -29,4 +29,6 @@ export default async function createExpense(req, res) {
     // Only POST is allowed
     res.status(400).json({ message: 'Invalid method' });
   }
-}
+};
+
+export default createExpense;

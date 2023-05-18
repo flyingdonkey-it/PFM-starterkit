@@ -9,7 +9,7 @@ const monthlySpendingPieIndex = 2;
 const monthlySpendingBarIndex = 3;
 const monthlyIncomeIndex = 4;
 
-export function IncomeExpenseCharts({
+export const IncomeExpenseCharts = ({
   expenseData,
   incomeData,
   incomeMonthlyAvg,
@@ -18,7 +18,7 @@ export function IncomeExpenseCharts({
   expenseLoading,
   incomeLoading,
   chartWidth,
-}) {
+}) => {
   const [currentIndex, setCurrentIndex] = useState(1);
 
   const components = [
@@ -29,10 +29,10 @@ export function IncomeExpenseCharts({
   ];
 
   //Slide action to show a chart
-  function handleClickIndicator(e, index) {
+  const handleClickIndicator = (e, index) => {
     e.preventDefault();
     setCurrentIndex(index);
-  }
+  };
 
   return (
     <div className="sm:flex">
@@ -158,4 +158,4 @@ export function IncomeExpenseCharts({
       </div>
     </div>
   );
-}
+};
