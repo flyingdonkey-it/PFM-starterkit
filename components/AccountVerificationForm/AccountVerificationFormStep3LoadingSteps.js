@@ -12,8 +12,7 @@ export function AccountVerificationFormStep3LoadingSteps() {
   const [progressBarValue, setProgressBarValue] = useState(0);
   const [progressInterval, setProgressInterval] = useState(null);
   const transactionContext = useTransactionsDataContext();
-  const isCompleted = transactionContext.state.isCompleted;
-  const transactionsError = transactionContext.state.transactionsError;
+  const {isCompleted, transactionsError } = transactionContext.state
   const { basiqConnection, finish } = useAccountVerificationForm();
   const { error, progress, completed, stepNameInProgress, reset, setJobId } = basiqConnection;
 

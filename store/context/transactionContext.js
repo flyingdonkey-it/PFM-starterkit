@@ -6,14 +6,12 @@ import axios from 'axios';
 export const TransactionsDataContext = createContext();
 export const useTransactionsDataContext = () => useContext(TransactionsDataContext);
 
-///gerekli ilk stateler buraya yazılacak
 let initialState = {
   allTransactions: {
     dateGroupedTransactions: [],
   },
 };
 
-//reducer baglantısı
 const reducer = (state, action) => {
   switch (action.type) {
     case 'TransactionsDataContext_FETCH_STATE':
@@ -34,7 +32,6 @@ const reducer = (state, action) => {
   }
 };
 
-///Contex Provider
 const TransactionsDataContextProvider = props => {
   initialState = { ...initialState, ...props.initialState };
   const [state, dispatch] = useReducerWithLogger(reducer, initialState);
