@@ -18,7 +18,7 @@ export const FORM_COMPONENTS = [
   AccountVerificationFormStep5Summary,
 ];
 
-export function AccountVerificationForm() {
+export const AccountVerificationForm = () => {
   const { currentStep, totalSteps, cancel, cancelling } = useAccountVerificationForm();
   const Component = FORM_COMPONENTS[currentStep];
 
@@ -65,4 +65,4 @@ export function AccountVerificationForm() {
       <PlanetIllustrations hiddenOnMobile={true} />
     </div>
   );
-}
+};

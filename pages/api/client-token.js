@@ -6,7 +6,7 @@ const { getNewClientToken } = require('../../serverAuthentication');
  * https://api.basiq.io/reference/authentication
  */
 
-export default async function clientToken(req, res) {
+const clientToken = async (req, res) => {
   const { userId } = req.query;
   try {
     const clientToken = await getNewClientToken(userId);
@@ -14,4 +14,6 @@ export default async function clientToken(req, res) {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
+
+export default clientToken;

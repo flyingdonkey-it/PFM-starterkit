@@ -11,7 +11,7 @@ const accountTypes = [
   { type: 'credit-card', title: 'Credit cards' },
 ];
 
-export function AccountPage() {
+export const AccountPage = () => {
   const [loading, setLoading] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState({});
@@ -21,12 +21,12 @@ export function AccountPage() {
   const { resetForNewAccount } = useAccountVerificationForm();
 
   //Redirecting to account verification for adding new account
-  function onAddAccountClick() {
+  const onAddAccountClick = () => {
     resetForNewAccount();
-  }
+  };
 
   //Getting accounts data of user with matching institutions
-  function getData() {
+  const getData = () => {
     setLoading(true);
 
     const userId = sessionStorage.getItem('userId');
@@ -34,8 +34,8 @@ export function AccountPage() {
     //Get all accounts of user
     axios
       .get(`/api/accounts`, { params: { userId } })
-      .then(function (response) {
-        function groupBy(list, keyGetter) {
+      .then(response => {
+        const groupBy = (list, keyGetter) => {
           const map = new Map();
           list.forEach(item => {
             const key = keyGetter(item);
@@ -47,7 +47,7 @@ export function AccountPage() {
             }
           });
           return map;
-        }
+        };
 
         setAccountsData(groupBy(response.data, item => item.class.type));
 
@@ -64,27 +64,27 @@ export function AccountPage() {
             setLoading(false);
           });
       })
-      .catch(function (error) {
+      .catch(error => {
         console.warn(error);
         setLoading(false);
       });
-  }
+  };
 
   useEffect(() => {
     getData();
   }, []);
 
   //Showing account detail page
-  function onAccountItemClick(e) {
+  const onAccountItemClick = e => {
     setShowDetail(true);
     setSelectedAccount({ accountDetail: e.accountDetail, accountItem: e.item, accountsType: e.accountsType });
-  }
+  };
 
   //Closing account detail page
-  function onCloseAccountDetailClick() {
+  const onCloseAccountDetailClick = () => {
     setSelectedAccount({});
     setShowDetail(false);
-  }
+  };
 
   return (
     <div className={`sm:min-w-max ${!showDetail && 'xl:pl-80 xl:pr-80'}`}>
@@ -135,4 +135,4 @@ export function AccountPage() {
       {showDetail && <AccountItemDetail onClose={onCloseAccountDetailClick} selectedAccount={selectedAccount} />}
     </div>
   );
-}
+};

@@ -5,7 +5,7 @@ import { CreditCard } from './CreditCard';
 import { IncomeExpense } from './IncomeExpense';
 import { MonthlySpendingBarChart } from './MonthlySpendingBarChart';
 
-export function HomeSlider({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly, expenseLoading }) {
+export const HomeSlider = ({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly, expenseLoading }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   //Savings account balance
   const [savingsBalance, setSavingsBalance] = useState(0);
@@ -17,7 +17,13 @@ export function HomeSlider({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly
 
   //Slider components to load when it is selected
   const components = [
-    { index: 0, hidden: false, component: <Savings balance={savingsBalance} accountsLoading={accountsLoading} institutionCode={institutionCode} /> },
+    {
+      index: 0,
+      hidden: false,
+      component: (
+        <Savings balance={savingsBalance} accountsLoading={accountsLoading} institutionCode={institutionCode} />
+      ),
+    },
     { index: 1, hidden: true, component: <CreditCard balance={creditCardBalance} /> },
     {
       index: 2,
@@ -39,13 +45,13 @@ export function HomeSlider({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly
   ];
 
   //Get clicked index when carousel indicator clicked
-  function handleClickIndicator(e, index) {
+  const handleClickIndicator = (e, index) => {
     e.preventDefault();
     setCurrentIndex(index);
-  }
+  };
 
   //Get accounts of user and set related account type balance
-  function fetchAccounts() {
+  const fetchAccounts = () => {
     const userId = sessionStorage.getItem('userId');
     axios
       .get('/api/accounts', { params: { userId } })
@@ -55,11 +61,11 @@ export function HomeSlider({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly
         setInstitutionCode(response.data.filter(x => x.class.type === 'savings')[0].institution);
         setAccountsLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setAccountsLoading(false);
         console.error(error);
       });
-  }
+  };
 
   useEffect(() => {
     setAccountsLoading(true);
@@ -115,4 +121,4 @@ export function HomeSlider({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly
       </div>
     </div>
   );
-}
+};

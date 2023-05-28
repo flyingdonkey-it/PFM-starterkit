@@ -5,7 +5,7 @@ const COLORS = ['#32A1BC', '#715CC2'];
 const RADIAN = Math.PI / 180;
 
 //Change label to custom text
-function renderCustomizedLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent }) {
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -15,9 +15,9 @@ function renderCustomizedLabel({ cx, cy, midAngle, innerRadius, outerRadius, per
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );
-}
+};
 
-export function SimplePieChart({ data }) {
+export const SimplePieChart = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height="100%" aspect={1.05}>
       <PieChart width={400} height={400}>
@@ -38,4 +38,4 @@ export function SimplePieChart({ data }) {
       </PieChart>
     </ResponsiveContainer>
   );
-}
+};

@@ -1,6 +1,6 @@
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function Loans({ balance }) {
+export const Loans = ({ balance }) => {
   return (
     <div className="border-2 shadow-md h-44 sm:h-64 bg-[#fbfbfb] rounded-2xl border-[#e0eaff] sm:bg-[#F5F7F8] sm:min-w-max">
       <div className="mt-4 mb-2 ml-7 mr-9 sm:mb-5">
@@ -31,4 +31,4 @@ export function Loans({ balance }) {
       </div>
     </div>
   );
-}
+};

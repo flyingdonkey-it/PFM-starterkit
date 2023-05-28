@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function IncomeExpenseItemDetail({ item }) {
+export const IncomeExpenseItemDetail = ({ item }) => {
   const [randomInt, setRandomInt] = useState(0);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ export function IncomeExpenseItemDetail({ item }) {
       </div>
     </div>
   );
-}
+};

@@ -1,6 +1,6 @@
 import { useToggleState } from '@/utils/useToggleState';
 
-export function PasswordField({ id, label, error, ...props }) {
+export const PasswordField = ({ id, label, error, ...props }) => {
   const [visible, toggleVisibility] = useToggleState(false);
   return (
     <div className="space-y-2">
@@ -43,9 +43,9 @@ export function PasswordField({ id, label, error, ...props }) {
       {error && <span className="block text-sm text-critical-bold-darker">{error}</span>}
     </div>
   );
-}
+};
 
-function VisibleIcon() {
+const VisibleIcon = () => {
   return (
     // Icon: eye-off (outline)
     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,9 +57,9 @@ function VisibleIcon() {
       />
     </svg>
   );
-}
+};
 
-function NotVisibleIcon() {
+const NotVisibleIcon = () => {
   return (
     // Icon: eye (outline)
     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,4 +72,4 @@ function NotVisibleIcon() {
       />
     </svg>
   );
-}
+};

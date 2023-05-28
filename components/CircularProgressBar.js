@@ -3,7 +3,7 @@ const strokeWidth = 8;
 const center = diameter / 2;
 const pathRadius = center - strokeWidth / 2;
 
-export function CircularProgressBar({ label, value = 0, error }) {
+export const CircularProgressBar = ({ label, value = 0, error }) => {
   const pathRatio = getPathRatio({ value });
 
   // Calculate dash coordinates relative to the circle (the actual "progress" bar)
@@ -75,18 +75,18 @@ export function CircularProgressBar({ label, value = 0, error }) {
       </div>
     </div>
   );
-}
+};
 
 // ratio of path length, as a value between 0 and 1
-function getPathRatio({ value }) {
+const getPathRatio = ({ value }) => {
   const clamped = Math.min(Math.max(value, 0), 100);
   return (clamped - 0) / (100 - 0);
-}
+};
 
 // circumference: pixel value of the circle
 // offset: shift backward so the gap appears at the correct distance
-function getPathDimensions({ pathRatio, pathRadius }) {
+const getPathDimensions = ({ pathRatio, pathRadius }) => {
   const circumference = Math.PI * 2 * pathRadius;
   const offset = (1 - pathRatio) * circumference;
   return { circumference, offset };
-}
+};

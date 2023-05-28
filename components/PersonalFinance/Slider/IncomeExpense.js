@@ -1,7 +1,7 @@
 import { SingleBarChart } from '@/components/SingleBarChart';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function IncomeExpense({ incomeMonthlyAvg, expenseMonthlyAvg }) {
+export const IncomeExpense = ({ incomeMonthlyAvg, expenseMonthlyAvg }) => {
   const data = [
     {
       avgData: incomeMonthlyAvg,
@@ -63,4 +63,4 @@ export function IncomeExpense({ incomeMonthlyAvg, expenseMonthlyAvg }) {
       </div>
     </div>
   );
-}
+};

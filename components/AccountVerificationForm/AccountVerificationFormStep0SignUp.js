@@ -8,7 +8,7 @@ import { TextField } from '@/components/TextField';
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { axios } from '@/utils/axios';
 
-export function AccountVerificationFormStep0SignUp() {
+export const AccountVerificationFormStep0SignUp = () => {
   const { goToStep, updateAccountVerificationFormState, goForward } = useAccountVerificationForm();
 
   const [formState, { email }] = useFormState();
@@ -25,7 +25,7 @@ export function AccountVerificationFormStep0SignUp() {
     }
   }, []);
 
-  function handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault();
     setSubmitting(true);
     axios
@@ -41,7 +41,7 @@ export function AccountVerificationFormStep0SignUp() {
         setSubmitting(false);
         setError(error);
       });
-  }
+  };
 
   return (
     <div className="relative flex flex-col h-screen sm:w-[36rem] space-y-6 sm:h-fit sm:static">
@@ -86,4 +86,4 @@ export function AccountVerificationFormStep0SignUp() {
       </div>
     </div>
   );
-}
+};

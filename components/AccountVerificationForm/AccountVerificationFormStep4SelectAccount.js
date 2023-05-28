@@ -10,7 +10,7 @@ import { ErrorMessage } from '@/components/ErrorMessage';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { maskAccountNumber } from '@/utils/maskAccountNumber';
 
-export function AccountVerificationFormStep4SelectAccount() {
+export const AccountVerificationFormStep4SelectAccount = () => {
   const { goForward, updateAccountVerificationFormState, goToConsent, getUserConsent } = useAccountVerificationForm();
 
   const userId = sessionStorage.getItem('userId');
@@ -24,7 +24,7 @@ export function AccountVerificationFormStep4SelectAccount() {
 
   const errorOrNoData = error || !data || data.length === 0;
 
-  function handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault();
     if (selectedAccount) {
       updateAccountVerificationFormState({ selectedAccount });
@@ -33,16 +33,16 @@ export function AccountVerificationFormStep4SelectAccount() {
       setValidationError(true);
       window.scrollTo(0, 0);
     }
-  }
+  };
 
-  async function retryConnection() {
+  const retryConnection = async () => {
     try {
       await getUserConsent(userId);
       goToConsent('connect');
     } catch {
       goToConsent();
     }
-  }
+  };
 
   if (!userId) return null;
 
@@ -174,12 +174,12 @@ export function AccountVerificationFormStep4SelectAccount() {
       </div>
     </div>
   );
-}
+};
 
 // RETRIEVE ACCOUNTS
 // Custom react hook for managing our fetch request to retrieves a list of accounts for the current user
 // The code for this API route can be found in `pages/api/accounts`
-function useAccountsData({ userId }) {
+const useAccountsData = ({ userId }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [error, setError] = useState();
@@ -208,13 +208,13 @@ function useAccountsData({ userId }) {
   }, [fetchAccounts]);
 
   return { data, loading, error, refetch };
-}
+};
 
 // ACCOUNTS LOADING SKELETON
 // Keeps the user visually occupied whilst loading,
 // making the experience seem quicker than it might be.
 const skeletonItems = [...new Array(5).keys()];
-function AccountsLoadingSkeleton() {
+const AccountsLoadingSkeleton = () => {
   return (
     <div className="space-y-3">
       {skeletonItems.map(i => (
@@ -234,4 +234,4 @@ function AccountsLoadingSkeleton() {
       ))}
     </div>
   );
-}
+};

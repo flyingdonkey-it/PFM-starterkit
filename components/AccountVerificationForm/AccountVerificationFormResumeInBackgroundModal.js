@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '../Button';
 import { Modal, ModalTitle } from '../Modal';
 
-export function AccountVerificationFormResumeInBackgroundModal({ isOpen, onClose }) {
+export const AccountVerificationFormResumeInBackgroundModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalTitle>Exit and resume process in background?</ModalTitle>
@@ -23,4 +23,4 @@ export function AccountVerificationFormResumeInBackgroundModal({ isOpen, onClose
       </div>
     </Modal>
   );
-}
+};

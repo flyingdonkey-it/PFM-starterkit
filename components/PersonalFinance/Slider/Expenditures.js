@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { formatCurrency } from '@/utils/formatCurrency';
 
-export function Expenditures({ payments, expenseLoading }) {
+export const Expenditures = ({ payments, expenseLoading }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   //Getting click to left or right action and slide category
-  function handleClick(e) {
+  const handleClick = e => {
     e.preventDefault();
     if (e.currentTarget.name === 'next') {
       if (currentIndex + 1 < payments.length) {
@@ -18,7 +18,7 @@ export function Expenditures({ payments, expenseLoading }) {
         setCurrentIndex(currentIndex - 1);
       }
     }
-  }
+  };
 
   return (
     <div className="mt-20 mb-8 ml-7 mr-7 sm:ml-4 m:mb-5 sm:mt-8">
@@ -173,4 +173,4 @@ export function Expenditures({ payments, expenseLoading }) {
       )}
     </div>
   );
-}
+};

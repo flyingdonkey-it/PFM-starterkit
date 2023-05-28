@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Button } from '../Button';
 import { Modal, ModalTitle } from '../Modal';
 
-export function AccountVerificationFormLearnMoreModal({ isOpen, onClose, onConfirm }) {
+export const AccountVerificationFormLearnMoreModal = ({ isOpen, onClose, onConfirm }) => {
   const connectButtonRef = useRef(null);
 
   return (
@@ -67,8 +67,8 @@ export function AccountVerificationFormLearnMoreModal({ isOpen, onClose, onConfi
           >
             basiq.io
           </a>
-          , we use encryption trusted by all major banks, to keep your data private and secure. We undergo
-          regular penetration testing and privacy compliance audits.
+          , we use encryption trusted by all major banks, to keep your data private and secure. We undergo regular
+          penetration testing and privacy compliance audits.
         </p>
       </div>
 
@@ -76,8 +76,8 @@ export function AccountVerificationFormLearnMoreModal({ isOpen, onClose, onConfi
       <div className="text-left space-y-2">
         <h4 className="font-semibold leading-snug text-md">This app will never save your bank login credentials</h4>
         <p className="text-sm leading-relaxed text-neutral-muted-darker">
-          For ongoing data access, credentials are stored by Basiq using an AES 256-bit envelope encryption, which means they can never be made accessible
-          to anyone.
+          For ongoing data access, credentials are stored by Basiq using an AES 256-bit envelope encryption, which means
+          they can never be made accessible to anyone.
         </p>
       </div>
 
@@ -85,8 +85,8 @@ export function AccountVerificationFormLearnMoreModal({ isOpen, onClose, onConfi
       <div className="text-left space-y-2">
         <h4 className="font-semibold leading-snug text-md">We can not transact on your behalf</h4>
         <p className="text-sm leading-relaxed text-neutral-muted-darker">
-          All access to data is read-only, meaning we can see accounts and transactions to report on them, but are unable to
-          perform any actions on behalf of the user without explicit permission to do so.
+          All access to data is read-only, meaning we can see accounts and transactions to report on them, but are
+          unable to perform any actions on behalf of the user without explicit permission to do so.
         </p>
       </div>
 
@@ -94,8 +94,8 @@ export function AccountVerificationFormLearnMoreModal({ isOpen, onClose, onConfi
       <div className="text-left space-y-2">
         <h4 className="font-semibold leading-snug text-md">We will never sell your data</h4>
         <p className="text-sm leading-relaxed text-neutral-muted-darker">
-          We will only share your data with parties or applications where you have provided permission. All your data is stored
-          securely.
+          We will only share your data with parties or applications where you have provided permission. All your data is
+          stored securely.
         </p>
       </div>
 
@@ -110,4 +110,4 @@ export function AccountVerificationFormLearnMoreModal({ isOpen, onClose, onConfi
       </div>
     </Modal>
   );
-}
+};
