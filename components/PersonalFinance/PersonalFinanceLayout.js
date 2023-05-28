@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react'; 
 import axios from 'axios';
 import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 import { Menu } from './Menu';
@@ -11,8 +10,7 @@ import { ProfileLayout } from './ProfileLayout';
 import { TransactionPage } from './Transaction';
 import { HomeSlider, Expenditures } from './Slider';
 import { AccountPage } from './Account';
-import { IncomeExpensePage } from './IncomeExpense';
-import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
+import { IncomeExpensePage } from './IncomeExpense'; 
 import { useTransactionsDataContext } from '@/components/store/context/transactionContext';
 
 const homePageIndex = 1;
