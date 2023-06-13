@@ -6,18 +6,19 @@ import { useTernaryState } from '@/utils/useTernaryState';
 import { Button } from '@/components/Button';
 import { CircularProgressBar } from '@/components/CircularProgressBar';
 import { useTransactionsDataContext } from '@/components/store/context/transactionContext';
-
+import useSessionStorage from '@/components/store/hooks/useSessionStorage';
 export const AccountVerificationFormStep3LoadingSteps = () => {
   const [isResumeModalOpen, openResumeModal, closeResumeModal] = useTernaryState(false);
   const [progressBarValue, setProgressBarValue] = useState(0);
   const [progressInterval, setProgressInterval] = useState(null);
   const transactionContext = useTransactionsDataContext();
+   const s_storage = useSessionStorage();
   const {isCompleted, transactionsError } = transactionContext.state
   const { basiqConnection, finish } = useAccountVerificationForm();
   const { error, progress, completed, stepNameInProgress, reset, setJobId } = basiqConnection;
 
   const { data } = useAccountsData({
-    userId: sessionStorage.getItem('userId'),
+    userId: s_storage.getItem('userId'),
   });
   let userTransactionsRequestSuccessful = isCompleted;
 
@@ -117,7 +118,7 @@ const useAccountsData = ({ userId }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [error, setError] = useState();
-
+  const s_storage = useSessionStorage();
   const { updateAccountVerificationFormState } = useAccountVerificationForm();
   const transactionContext = useTransactionsDataContext();
 
@@ -127,7 +128,7 @@ const useAccountsData = ({ userId }) => {
       .then(res => {
         let account = res.data.find(account => !account.disabled);
         updateAccountVerificationFormState({ account });
-        sessionStorage.setItem('currentAccountId', account.id);
+        s_storage.setItem('currentAccountId', account.id);
         transactionContext.getAllTransactions();
         setData(res.data);
         setError(undefined);

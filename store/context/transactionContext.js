@@ -2,6 +2,7 @@
 import React, { createContext, useContext } from 'react';
 import useReducerWithLogger from './logger';
 import axios from 'axios';
+import useSessionStorage from '../hooks/useSessionStorage';
 
 export const TransactionsDataContext = createContext();
 export const useTransactionsDataContext = () => useContext(TransactionsDataContext);
@@ -35,7 +36,8 @@ const reducer = (state, action) => {
 const TransactionsDataContextProvider = props => {
   initialState = { ...initialState, ...props.initialState };
   const [state, dispatch] = useReducerWithLogger(reducer, initialState);
-  const userId = sessionStorage.getItem('userId');
+   const s_storage = useSessionStorage();
+  const userId = s_storage.getItem('userId');
   
 
   const updateState = (key, value) => {

@@ -4,6 +4,7 @@ import { TransactionItem } from './TransactionItem';
 import { TransactionItemDetail } from './TransactionItemDetail';
 import { Calendar } from '@/components/Calendar';
 import { useToggleState } from '@/utils/useToggleState';
+import useSessionStorage from '@/components/store/hooks/useSessionStorage';
 
 export const TransactionPage = ({
   inTransactionsPage,
@@ -15,10 +16,11 @@ export const TransactionPage = ({
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [showCalendar, setShowCalendar] = useToggleState(false);
   const [currentAccount, setCurrentAccount] = useState({});
+  const s_storage = useSessionStorage();
 
   const getCurrentAccount = () => {
-    const userId = sessionStorage.getItem('userId');
-    const currentAccountId = sessionStorage.getItem('currentAccountId');
+    const userId = s_storage.getItem('userId');
+    const currentAccountId = s_storage.getItem('currentAccountId');
 
     axios
       .get(`/api/get-account`, { params: { userId, accountId: currentAccountId } })
