@@ -36,6 +36,7 @@ const TransactionsDataContextProvider = props => {
   initialState = { ...initialState, ...props.initialState };
   const [state, dispatch] = useReducerWithLogger(reducer, initialState);
   const userId = sessionStorage.getItem('userId');
+  
 
   const updateState = (key, value) => {
     dispatch({
