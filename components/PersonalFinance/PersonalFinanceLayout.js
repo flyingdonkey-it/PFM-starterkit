@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react'; 
 import axios from 'axios';
 import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 import { Menu } from './Menu';
@@ -11,7 +10,9 @@ import { ProfileLayout } from './ProfileLayout';
 import { TransactionPage } from './Transaction';
 import { HomeSlider, Expenditures } from './Slider';
 import { AccountPage } from './Account';
-import { IncomeExpensePage } from './IncomeExpense';
+import { IncomeExpensePage } from './IncomeExpense'; 
+import { useTransactionsDataContext } from '@/components/store/context/transactionContext';
+import useSessionStorage from '@/components/store/hooks/useSessionStorage';
 
 const homePageIndex = 1;
 const accountPageIndex = 2;
@@ -43,6 +44,8 @@ export const PersonalFinanceLayout = () => {
   const [hideIncomeExpensePageItems, setHideIncomeExpensePageItems] = useState(false);
   const [refreshConnectionApiCalled, setRefreshConnectionApiCalled] = useState(false);
   const [incomeExpenseApiCalled, setIncomeExpenseApiCalled] = useState(false);
+  const transactionContext = useTransactionsDataContext();
+  const s_storage = useSessionStorage()
 
   //Monthly sum of payments in categories
   const [expenseMonthlyData, setExpenseMonthlyData] = useState([]);
@@ -65,10 +68,12 @@ export const PersonalFinanceLayout = () => {
 
   const { refreshBasiqConnection, basiqConnection } = useAccountVerificationForm();
   const { completed } = basiqConnection;
+  let dateGroupedTransactions = transactionContext.state.dateGroupedTransactions;
+  useEffect(() => {
+    transactionContext.getAllTransactions();
+  }, []);
 
-  let { dateGroupedTransactions } = useSelector(state => state.userTransactions);
-
-  const userId = sessionStorage.getItem('userId');
+  const userId = s_storage.getItem('userId');
 
   const setIncomeExpenseData = async () => {
     //Before creating income & expense summary, creating or refreshing the relevant connections is required
@@ -130,7 +135,6 @@ export const PersonalFinanceLayout = () => {
         expenseChangeHistory.push(...paymentsChangeHistory);
 
         setExpensesByDate(prepareExpenseByDate(expenseChangeHistory));
-
         setExpenseLoading(false);
       })
       .catch(error => {
@@ -185,6 +189,7 @@ export const PersonalFinanceLayout = () => {
       });
 
     setIncomeExpenseApiCalled(true);
+  
   };
 
   useEffect(() => {
@@ -341,6 +346,7 @@ export const PersonalFinanceLayout = () => {
                     expenseMonthly={expenseMonthlyData}
                     expenseLoading={expenseLoading}
                   />
+
                   <HomeCharts
                     expenseData={expenseData}
                     incomeData={incomeData}

@@ -4,6 +4,7 @@ import { Savings } from './Savings';
 import { CreditCard } from './CreditCard';
 import { IncomeExpense } from './IncomeExpense';
 import { MonthlySpendingBarChart } from './MonthlySpendingBarChart';
+import useSessionStorage from '@/components/store/hooks/useSessionStorage';
 
 export const HomeSlider = ({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly, expenseLoading }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,6 +15,7 @@ export const HomeSlider = ({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly
   //Savings institution code
   const [institutionCode, setInstitutionCode] = useState(null);
   const [accountsLoading, setAccountsLoading] = useState(false);
+  const s_storage = useSessionStorage();
 
   //Slider components to load when it is selected
   const components = [
@@ -52,7 +54,7 @@ export const HomeSlider = ({ incomeMonthlyAvg, expenseMonthlyAvg, expenseMonthly
 
   //Get accounts of user and set related account type balance
   const fetchAccounts = () => {
-    const userId = sessionStorage.getItem('userId');
+    const userId = s_storage.getItem('userId');
     axios
       .get('/api/accounts', { params: { userId } })
       .then(response => {

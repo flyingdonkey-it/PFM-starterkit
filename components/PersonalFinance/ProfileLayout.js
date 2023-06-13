@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAccountVerificationForm } from '../AccountVerificationForm/AccountVerificationFormProvider';
 import { axios } from '@/utils/axios';
+import useSessionStorage from '@/components/store/hooks/useSessionStorage';
 
 export const ProfileLayout = ({ open, setMenuOpen }) => {
   const [consentOpen, setConsentOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const s_storage = useSessionStorage()
 
   const router = useRouter();
 
@@ -27,7 +29,7 @@ export const ProfileLayout = ({ open, setMenuOpen }) => {
   };
 
   const onRevokeConsentClick = () => {
-    const userId = sessionStorage.getItem('userId');
+    const userId = s_storage.getItem('userId');
     axios
       .get(`/api/consents?userId=${userId}`)
       .then(async res => {

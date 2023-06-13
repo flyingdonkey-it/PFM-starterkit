@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { getClientToken } from '../../clientAuthentication';
 import { FORM_COMPONENTS } from './AccountVerificationForm';
 import { axios } from '@/utils/axios';
+import useSessionStorage from '@/components/store/hooks/useSessionStorage';
 
 const AccountVerificationFormContext = createContext({
   // The current step number of the form the user on
@@ -49,6 +50,7 @@ const initialAccountVerificationFormState = {
 
 export const AccountVerificationFormProvider = ({ children }) => {
   const router = useRouter();
+  const s_storage = useSessionStorage()
 
   const [accountVerificationFormState, setAccountVerificationFormState] = useState(initialAccountVerificationFormState);
 
@@ -83,11 +85,11 @@ export const AccountVerificationFormProvider = ({ children }) => {
     setCurrentStep(0);
     setCancelling(false);
     setHasCompletedForm(false);
-    sessionStorage.clear();
+    s_storage.clear();
   };
 
   const resetStateForNewAccount = async () => {
-    const email = sessionStorage.getItem('email');
+    const email = s_storage.getItem('email');
 
     await deleteBasiqConnection();
 
@@ -95,15 +97,15 @@ export const AccountVerificationFormProvider = ({ children }) => {
     setCurrentStep(1);
     setCancelling(false);
     setHasCompletedForm(false);
-    sessionStorage.clear();
+    s_storage.clear();
 
     axios
       .post('/api/create-user', { email: email })
       .then(async res => {
         updateAccountVerificationFormState({ user: res.data });
 
-        sessionStorage.setItem('userId', res.data.id);
-        sessionStorage.setItem('email', email);
+        s_storage.setItem('userId', res.data.id);
+        s_storage.setItem('email', email);
 
         router.push('/account-verification');
       })
@@ -124,7 +126,7 @@ export const AccountVerificationFormProvider = ({ children }) => {
     try {
       await deleteBasiqConnection();
       router.push('/');
-      sessionStorage.clear();
+      s_storage.clear();
       resetState();
     } catch {
       // If something went wrong while deleting the basiq connection, we send the user to the home page via a full page refresh so all state is reset
@@ -142,7 +144,7 @@ export const AccountVerificationFormProvider = ({ children }) => {
       //   await deleteUser()
       // }
       setHasCompletedForm(true);
-      //sessionStorage.clear()
+      //s_storage.clear()
       router.push('/personal-finance');
     } catch {
       // If something went wrong while deleting the basiq connection, we send the user to the home page via a full page refresh so all state is reset
@@ -152,7 +154,7 @@ export const AccountVerificationFormProvider = ({ children }) => {
 
   // Redirect to the external Basiq Consent UI
   const goToConsent = async (action = null) => {
-    let userId = sessionStorage.getItem('userId');
+    let userId = s_storage.getItem('userId');
     const token = await getClientToken(userId);
     window.location = `https://consent.basiq.io/home?userId=${userId}&token=${token}&action=${action}`;
   };
