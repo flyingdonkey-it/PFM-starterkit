@@ -80,7 +80,7 @@ const Home = () => {
                 )}
                 {/* ACTION */}
                 <Link href="/account-verification" passHref>
-                  <Button as="a" variant="bold" block>
+                  <Button variant="bold" block>
                     {basiqConnectionInProgress || basiqConnectionSuccess ? 'Continue setup' : 'Get started'}
                   </Button>
                 </Link>
